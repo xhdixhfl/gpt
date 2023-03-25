@@ -1,0 +1,300 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyM0pKq1+KXYSMcKEHe62jOP"
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    },
+    "accelerator": "GPU",
+    "gpuClass": "standard"
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "source": [
+        "https://ttaerrim.tistory.com/19 참고함 1시도는 그냥 깃허브보고 한것"
+      ],
+      "metadata": {
+        "id": "geC2UzofoBjZ"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "0tf76YHgn8ya",
+        "outputId": "966302f9-e201-4337-e09c-4565bf6be71f"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Mounted at /content/drive\n"
+          ]
+        }
+      ],
+      "source": [
+        "from google.colab import drive\n",
+        "drive.mount('/content/drive') # 드라이브 연결"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!cd drive/MyDrive  # 이 디렉토리 위치에\n",
+        "!git clone https://github.com/uoneway/KoBertSum.git   # 깃클론 할거야"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "p_NG3OL7oKkL",
+        "outputId": "37379753-3048-4a12-f63d-328e9bcd6a47"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Cloning into 'KoBertSum'...\n",
+            "remote: Enumerating objects: 908, done.\u001b[K\n",
+            "remote: Counting objects: 100% (118/118), done.\u001b[K\n",
+            "remote: Compressing objects: 100% (16/16), done.\u001b[K\n",
+            "remote: Total 908 (delta 108), reused 102 (delta 102), pack-reused 790\u001b[K\n",
+            "Receiving objects: 100% (908/908), 15.97 MiB | 19.35 MiB/s, done.\n",
+            "Resolving deltas: 100% (576/576), done.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        " 받은 데이터들 /content/KoBertSum/ext/data/raw 위치로 이동동"
+      ],
+      "metadata": {
+        "id": "slo1pL8uq5uC"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!python /content/KoBertSum/main.py -task install"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "QQO1Ffcpoe7d",
+        "outputId": "0205e53c-fd28-471d-9808-71382a6929f4"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "/content/KoBertSum/ext\n",
+            "Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/\n",
+            "Collecting multiprocess==0.70.9\n",
+            "  Downloading multiprocess-0.70.9.tar.gz (1.6 MB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m1.6/1.6 MB\u001b[0m \u001b[31m34.7 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25h  Preparing metadata (setup.py) ... \u001b[?25l\u001b[?25hdone\n",
+            "Collecting numpy==1.17.2\n",
+            "  Downloading numpy-1.17.2.zip (6.5 MB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m6.5/6.5 MB\u001b[0m \u001b[31m114.4 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25h  Preparing metadata (setup.py) ... \u001b[?25l\u001b[?25hdone\n",
+            "Collecting pyrouge==0.1.3\n",
+            "  Downloading pyrouge-0.1.3.tar.gz (60 kB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m60.5/60.5 KB\u001b[0m \u001b[31m9.6 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25h  Preparing metadata (setup.py) ... \u001b[?25l\u001b[?25hdone\n",
+            "Collecting transformers==3.*\n",
+            "  Downloading transformers-3.5.1-py3-none-any.whl (1.3 MB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m1.3/1.3 MB\u001b[0m \u001b[31m72.2 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hCollecting tensorboardX==1.9\n",
+            "  Downloading tensorboardX-1.9-py2.py3-none-any.whl (190 kB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m190.7/190.7 KB\u001b[0m \u001b[31m26.6 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25h\u001b[31mERROR: Could not find a version that satisfies the requirement torch==1.1.0 (from versions: 1.7.1, 1.8.0, 1.8.1, 1.9.0, 1.9.1, 1.10.0, 1.10.1, 1.10.2, 1.11.0, 1.12.0, 1.12.1, 1.13.0, 1.13.1, 2.0.0)\u001b[0m\u001b[31m\n",
+            "\u001b[0m\u001b[31mERROR: No matching distribution found for torch==1.1.0\u001b[0m\u001b[31m\n",
+            "\u001b[0mLooking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/\n",
+            "Requirement already satisfied: Cython in /usr/local/lib/python3.9/dist-packages (0.29.33)\n",
+            "python3: can't open file '/content/KoBertSum/ext/src/others/install_mecab.py': [Errno 2] No such file or directory\n",
+            "Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/\n",
+            "Collecting kss\n",
+            "  Downloading kss-4.5.1.tar.gz (77 kB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m77.7/77.7 KB\u001b[0m \u001b[31m5.6 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25h  Preparing metadata (setup.py) ... \u001b[?25l\u001b[?25hdone\n",
+            "Requirement already satisfied: bs4 in /usr/local/lib/python3.9/dist-packages (from -r /content/KoBertSum/requirements_prepro.txt (line 3)) (0.0.1)\n",
+            "Requirement already satisfied: pandas in /usr/local/lib/python3.9/dist-packages (from -r /content/KoBertSum/requirements_prepro.txt (line 4)) (1.4.4)\n",
+            "Requirement already satisfied: nltk in /usr/local/lib/python3.9/dist-packages (from -r /content/KoBertSum/requirements_prepro.txt (line 8)) (3.8.1)\n",
+            "Collecting konlpy\n",
+            "  Downloading konlpy-0.6.0-py2.py3-none-any.whl (19.4 MB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m19.4/19.4 MB\u001b[0m \u001b[31m75.7 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hCollecting emoji==1.2.0\n",
+            "  Downloading emoji-1.2.0-py3-none-any.whl (131 kB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m131.3/131.3 KB\u001b[0m \u001b[31m20.6 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hRequirement already satisfied: regex in /usr/local/lib/python3.9/dist-packages (from kss->-r /content/KoBertSum/requirements_prepro.txt (line 2)) (2022.10.31)\n",
+            "Collecting pecab\n",
+            "  Downloading pecab-1.0.8.tar.gz (26.4 MB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m26.4/26.4 MB\u001b[0m \u001b[31m63.7 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25h  Preparing metadata (setup.py) ... \u001b[?25l\u001b[?25hdone\n",
+            "Requirement already satisfied: networkx in /usr/local/lib/python3.9/dist-packages (from kss->-r /content/KoBertSum/requirements_prepro.txt (line 2)) (3.0)\n",
+            "Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.9/dist-packages (from bs4->-r /content/KoBertSum/requirements_prepro.txt (line 3)) (4.11.2)\n",
+            "Requirement already satisfied: pytz>=2020.1 in /usr/local/lib/python3.9/dist-packages (from pandas->-r /content/KoBertSum/requirements_prepro.txt (line 4)) (2022.7.1)\n",
+            "Requirement already satisfied: python-dateutil>=2.8.1 in /usr/local/lib/python3.9/dist-packages (from pandas->-r /content/KoBertSum/requirements_prepro.txt (line 4)) (2.8.2)\n",
+            "Requirement already satisfied: numpy>=1.18.5 in /usr/local/lib/python3.9/dist-packages (from pandas->-r /content/KoBertSum/requirements_prepro.txt (line 4)) (1.22.4)\n",
+            "Requirement already satisfied: tqdm in /usr/local/lib/python3.9/dist-packages (from nltk->-r /content/KoBertSum/requirements_prepro.txt (line 8)) (4.65.0)\n",
+            "Requirement already satisfied: joblib in /usr/local/lib/python3.9/dist-packages (from nltk->-r /content/KoBertSum/requirements_prepro.txt (line 8)) (1.1.1)\n",
+            "Requirement already satisfied: click in /usr/local/lib/python3.9/dist-packages (from nltk->-r /content/KoBertSum/requirements_prepro.txt (line 8)) (8.1.3)\n",
+            "Requirement already satisfied: lxml>=4.1.0 in /usr/local/lib/python3.9/dist-packages (from konlpy->-r /content/KoBertSum/requirements_prepro.txt (line 9)) (4.9.2)\n",
+            "Collecting JPype1>=0.7.0\n",
+            "  Downloading JPype1-1.4.1-cp39-cp39-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (465 kB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m465.3/465.3 KB\u001b[0m \u001b[31m29.8 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hRequirement already satisfied: packaging in /usr/local/lib/python3.9/dist-packages (from JPype1>=0.7.0->konlpy->-r /content/KoBertSum/requirements_prepro.txt (line 9)) (23.0)\n",
+            "Requirement already satisfied: six>=1.5 in /usr/local/lib/python3.9/dist-packages (from python-dateutil>=2.8.1->pandas->-r /content/KoBertSum/requirements_prepro.txt (line 4)) (1.16.0)\n",
+            "Requirement already satisfied: soupsieve>1.2 in /usr/local/lib/python3.9/dist-packages (from beautifulsoup4->bs4->-r /content/KoBertSum/requirements_prepro.txt (line 3)) (2.4)\n",
+            "Requirement already satisfied: pyarrow in /usr/local/lib/python3.9/dist-packages (from pecab->kss->-r /content/KoBertSum/requirements_prepro.txt (line 2)) (9.0.0)\n",
+            "Requirement already satisfied: pytest in /usr/local/lib/python3.9/dist-packages (from pecab->kss->-r /content/KoBertSum/requirements_prepro.txt (line 2)) (7.2.2)\n",
+            "Requirement already satisfied: exceptiongroup>=1.0.0rc8 in /usr/local/lib/python3.9/dist-packages (from pytest->pecab->kss->-r /content/KoBertSum/requirements_prepro.txt (line 2)) (1.1.1)\n",
+            "Requirement already satisfied: pluggy<2.0,>=0.12 in /usr/local/lib/python3.9/dist-packages (from pytest->pecab->kss->-r /content/KoBertSum/requirements_prepro.txt (line 2)) (1.0.0)\n",
+            "Requirement already satisfied: attrs>=19.2.0 in /usr/local/lib/python3.9/dist-packages (from pytest->pecab->kss->-r /content/KoBertSum/requirements_prepro.txt (line 2)) (22.2.0)\n",
+            "Requirement already satisfied: tomli>=1.0.0 in /usr/local/lib/python3.9/dist-packages (from pytest->pecab->kss->-r /content/KoBertSum/requirements_prepro.txt (line 2)) (2.0.1)\n",
+            "Requirement already satisfied: iniconfig in /usr/local/lib/python3.9/dist-packages (from pytest->pecab->kss->-r /content/KoBertSum/requirements_prepro.txt (line 2)) (2.0.0)\n",
+            "Building wheels for collected packages: kss, pecab\n",
+            "  Building wheel for kss (setup.py) ... \u001b[?25l\u001b[?25hdone\n",
+            "  Created wheel for kss: filename=kss-4.5.1-py3-none-any.whl size=53220 sha256=5605ebf6cebccd9bfe2d04c1d67ea2b74c8683830a9983b38461f506a020bcb7\n",
+            "  Stored in directory: /root/.cache/pip/wheels/2f/23/d1/e9c8f5f2e8a61bb4cb8e4fdd0d0c951dab78882e3807c7f7ca\n",
+            "  Building wheel for pecab (setup.py) ... \u001b[?25l\u001b[?25hdone\n",
+            "  Created wheel for pecab: filename=pecab-1.0.8-py3-none-any.whl size=26646666 sha256=20adb01adbc65d680755f107db6c13ace3189f626873c7e712736bbdcf6cf49b\n",
+            "  Stored in directory: /root/.cache/pip/wheels/5c/91/bf/14eed6eafd0a83f76eab5cf8eb50ddc0b037f059eec2bd2e4a\n",
+            "Successfully built kss pecab\n",
+            "Installing collected packages: emoji, JPype1, pecab, konlpy, kss\n",
+            "Successfully installed JPype1-1.4.1 emoji-1.2.0 konlpy-0.6.0 kss-4.5.1 pecab-1.0.8\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# import pytorch\n",
+        "# print(pytorch.__version__) \n",
+        "# 위에 파이토치 버전이 안맞대서 1.71로 깔아볼거임\n",
+        "!pip install torch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "b3BG7G-Fu_8A",
+        "outputId": "9748bb10-eb87-4402-a659-a39a07ac09fe"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/\n",
+            "Collecting torch==1.9.0\n",
+            "  Downloading torch-1.9.0-cp39-cp39-manylinux1_x86_64.whl (831.4 MB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m831.4/831.4 MB\u001b[0m \u001b[31m2.1 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hCollecting torchvision==0.10.0\n",
+            "  Downloading torchvision-0.10.0-cp39-cp39-manylinux1_x86_64.whl (22.1 MB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m22.1/22.1 MB\u001b[0m \u001b[31m54.0 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hCollecting torchaudio==0.9.0\n",
+            "  Downloading torchaudio-0.9.0-cp39-cp39-manylinux1_x86_64.whl (1.9 MB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m1.9/1.9 MB\u001b[0m \u001b[31m65.1 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hRequirement already satisfied: typing-extensions in /usr/local/lib/python3.9/dist-packages (from torch==1.9.0) (4.5.0)\n",
+            "Requirement already satisfied: numpy in /usr/local/lib/python3.9/dist-packages (from torchvision==0.10.0) (1.22.4)\n",
+            "Requirement already satisfied: pillow>=5.3.0 in /usr/local/lib/python3.9/dist-packages (from torchvision==0.10.0) (8.4.0)\n",
+            "Installing collected packages: torch, torchvision, torchaudio\n",
+            "  Attempting uninstall: torch\n",
+            "    Found existing installation: torch 1.13.1+cu116\n",
+            "    Uninstalling torch-1.13.1+cu116:\n",
+            "      Successfully uninstalled torch-1.13.1+cu116\n",
+            "  Attempting uninstall: torchvision\n",
+            "    Found existing installation: torchvision 0.14.1+cu116\n",
+            "    Uninstalling torchvision-0.14.1+cu116:\n",
+            "      Successfully uninstalled torchvision-0.14.1+cu116\n",
+            "  Attempting uninstall: torchaudio\n",
+            "    Found existing installation: torchaudio 0.13.1+cu116\n",
+            "    Uninstalling torchaudio-0.13.1+cu116:\n",
+            "      Successfully uninstalled torchaudio-0.13.1+cu116\n",
+            "\u001b[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\n",
+            "torchtext 0.14.1 requires torch==1.13.1, but you have torch 1.9.0 which is incompatible.\u001b[0m\u001b[31m\n",
+            "\u001b[0mSuccessfully installed torch-1.9.0 torchaudio-0.9.0 torchvision-0.10.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "## 이게 오류가 나긴한데 위에서 파일경로가 나랑 안맞아서 main.py가 실행안되는듯\n",
+        "### 그래서 윗부분 파일경로랑 밑에 requirements 파일들 경로 수정함\n",
+        "\n",
+        "# !pip install multiprocess==0.70.9\n",
+        "# !pip install numpy==1.17.2\n",
+        "# !pip install pyrouge==0.1.3\n",
+        "# !pip install pytorch-transformers==1.2.0 # transformers==3.*  #\n",
+        "# !pip install tensorboardX==1.9\n",
+        "# !pip install torch==1.1.0"
+      ],
+      "metadata": {
+        "id": "bY4QffJOq41f"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!python /content/KoBertSum/main.py -task make_data -n_cpus 2"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "xL29onJLrgKf",
+        "outputId": "66968993-e04b-430e-af8e-bb149617b43c"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "/content/KoBertSum/ext\n",
+            "Traceback (most recent call last):\n",
+            "  File \"/content/KoBertSum/main.py\", line 49, in <module>\n",
+            "    os.chdir(PROJECT_DIR + '/src')\n",
+            "FileNotFoundError: [Errno 2] No such file or directory: '/content/KoBertSum/ext/src'\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "tIyD0IT9wSfz"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
